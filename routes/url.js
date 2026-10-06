@@ -5,14 +5,19 @@ const router = express.Router();
 const {
 
     handleCreateNewURL,
-    handleGetURL,
     handleGetAnalytics,
+    handleDeleteURL,
+    handleGetURLs,
 
 } = require("../controllers/url")
 
 router.post("/", handleCreateNewURL);
 
-router.get("/:shortID", handleGetURL);
+router.route("/:shortId")
+    .get(handleGetURLs)
+    .delete(handleDeleteURL);
+
+
 router.get("/analytics/:shortId", handleGetAnalytics);
 
 module.exports = router;
